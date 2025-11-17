@@ -2,32 +2,25 @@ from company.employee import Employee
 
 class Manager(Employee):
     def __init__(self, name, wage, managedUnit ):
-        # LA PRIMA COSA CHE DEVO FARE PER
-        # COSTRUIRE/INIZIALIZZARE UN Manager
-        # E' COSTRUIRE/INIZIALIZZARE
-        # LA "SUA PARTE" Employee
-        # USANDO LA FUNZIONE super()
+        # La prima cosa che devo fare per costruire/ inizializzare un Manager
+        # è costruire/inizializzare la "sua parte" da Employee, lo faccio
+        # usando la funzione super()
         super().__init__(name, wage)
 
-        # POI POSSO ANDARE A DEFINIRE/INIZIALIZZARE
-        # EVENTUALI ATTRIBUTI SPECIFICI DEL Manager
+        # Poi posso definire/inizializzare eventuali attributi specifici del manager
         self._managedUnit = managedUnit
 
-    # ANCHE SE NON DEFINISCO DI NUOVO __str__() E __repr()___
-    # QUESTE SONO EREDITATE DA Employee
-
-    # SE SERVE POSSO ANCHE ANDARE A RIDEFINIRE DELLE FUNZIONI
-    # IN MODO CHE SI COMPORTINO IN MODO DIVERSO, PIU' SPECIFICO
-    # PER IL Manager
+    # Anche se non definisco di nuovo __str__() E __repr()__ sono ereditate da Employee
+    # Se volessi un comportamento diverso da Employee potrei ridefinirle diversamente
 
     def __str__(self):
+        # Per stampare posso creare un nuovo metodo:
         #return f"{self._name}, {self._wage}, {self._managedUnit}"
-        # POTREI ANCHE DELEGARE ALL'Employee IL COMPITO DI STAMPARE
-        # CIO' CHE LO RIGUARDA, ED IO AGGIUNGERE SOLO managedUNit
+
+        # Opuure delegare all'Employee du stamparsi ed aggiungere solo managedUNit:
         return f"{super().__str__()}, {self._managedUnit}"
 
-    # QUESTA E' UNA VERSIONE DEL METODO increment_wage() DEFINITO
-    # NEL PADRE Employee (STESSO NOME) MA SPECIFICA PER IL Manager
-
+    # Creo una versione del metodo increment_wage() definito in Employee
+    # ma specifica per il Manager
     def increment_wage(self):
-        self._wage += 20000 # INCREMENTO PER IL MANAGER
+        self._wage += 20000

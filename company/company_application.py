@@ -1,5 +1,4 @@
 import operator
-
 from employee import Employee
 from manager import Manager
 from operator import attrgetter
@@ -16,21 +15,15 @@ e2 = Employee("A. Arancioni", 3000)
 employees = [e1, e2, m]
 
 for emp in employees:
-    emp.increment_wage() # PRIMA INCREMENTO LA PAGA
-                         # PYTHON GUARDA DI CHE TIPO
-                         # E' L'OGGETTO E CHIAMA LA VERSIONE
-                         # DEL METODO PIU' SPECIFICO DISPONIBILE
-                         # (POLIMORFISMO)
+    emp.increment_wage() # Incrementa la paga in base al tipo di lavoratore (employee/manager)
     #print(emp.__class__.__name__)
-    print(emp) # POI STAMPO, POSSO USARE isinstance() PER VERIFICARE IL TIPO
+    print(emp)
 
 eA = Employee("G. Verdi", 20000)
 eB = Employee("G. Verdi", 35000)
 
-# COSI' COME QUANDO STAMPO, VIENE VERIFICATA LA PRESENZA DEL
-# METODO __str()__, QUANDO CONFRONTO VIENE VERIFICATA LA PRESENZA
-# DEL METODO __eq()__ NEGLI OGGETTI (ALTRIMENTI USATA LA VERSIONE
-# DI BASE DEFINITA IN Object (CHE CONFRONTA I RIFERIMENTI)
+# Così come quando stampo viene verificata la presenza del metodo __str()__,
+# quando confronto viene verificata quella del metodo __eq()__
 
 if eA == eB:
     print("Sono uguali")
@@ -40,16 +33,13 @@ else:
 print("\nLista odinata")
 
 # Come ordinare una lista di Employee definendo metodi __eq__() e __lt__()
-
 sortedList = sorted(employees)
 
 # Come ordinare una lista di Employee con operator
-
-sortedList = sorted(employees, key=operator.attrgetter("wage")) # ESEMPIO PER PAGA
+sortedList = sorted(employees, key=operator.attrgetter("wage")) # In base alla paga
 
 # Come ordinare una lista di Employee con lambda expression
-
-sortedList = sorted(employees, key=lambda emp: emp.wage)
+sortedList = sorted(employees, key=lambda emp: emp.wage) # In base alla paga
 
 for emp in sortedList:
     print(emp)
